@@ -1,23 +1,11 @@
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Graph {
-    HashMap<String, LinkedList<String>> adjList = new HashMap<>();
-    HashMap<String, LinkedList<Integer>> adjList2 = new HashMap<>();
+    HashMap<String, LinkedList<String>> adjList = new HashMap<>();      //hashmap for order
+    HashMap<String, LinkedList<Integer>> adjList2 = new HashMap<>();    //hashmap for price of order
     public String customerName;
     public String order;
-    //public String price;
     public int price;
-
-  /*  public void setPrice(String price) {
-        this.price = price;
-    }
-
-    public String getPrice() {
-        return price;
-    }*/
 
     public void setPrice(int price) {
         this.price = price;
@@ -43,7 +31,7 @@ public class Graph {
         return order;
     }
 
-    //add order
+    //add connection of customer to order
     void addEdgeForOrder(String src, String dest){
         LinkedList<String> nodes;
         if(!adjList.containsKey(src)){
@@ -55,8 +43,8 @@ public class Graph {
         nodes.add(dest);
         adjList.put(src,nodes);
     }
-
-    void addEdgeForPirce(String src, int dest){
+    //add connection of customer to price
+    void addEdgeForPrice(String src, int dest){
         LinkedList<Integer> nodes;
         if(!adjList2.containsKey(src)){
             nodes = new LinkedList<>();
@@ -69,20 +57,33 @@ public class Graph {
     }
 
     //remove order
-    void removeEdge(String src, String dest){
+    void removeEdgeForOrder(String src, String dest){
         if(adjList.containsKey(src)){
             LinkedList<String> nodes= adjList.get(src);
             nodes.remove(dest);
             adjList.put(src,nodes);
         }
     }
+    //remove price
+    void removeEdgeForPrice(String src, int dest){
+        if(adjList2.containsKey(src)){
+            LinkedList<Integer> nodes= adjList2.get(src);
+            //nodes.remove(dest);
+            nodes.remove(Integer.valueOf(dest));
+
+            adjList2.put(src,nodes);
+        }
+    }
+
+    void removeAll(){
+        adjList.clear();
+        adjList2.clear();
+    }
     Set getNodes()  {
         return adjList.keySet();
     }
     // get all orders
-    public List<String> getAllFriends(String src){
-        return adjList.get(src);
-    }
+
     public List<String> getAllOrders(String src){
         return adjList.get(src);
     }
@@ -90,7 +91,12 @@ public class Graph {
         return adjList2.get(src);
     }
 
+
     public static void main(String[] args){
+        //test
+        Graph graph = new Graph();
+        graph.addEdgeForPrice("abc",5);
+        graph.addEdgeForPrice("abcd",7);
 
     }
 }

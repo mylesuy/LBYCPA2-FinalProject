@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
    <children>
       <Button fx:id="checkoutCart" contentDisplay="GRAPHIC_ONLY" layoutX="778.0" layoutY="515.0" mnemonicParsing="false" onAction="#checkoutPressed" prefHeight="61.0" prefWidth="97.0" text="Checkout" />
       <ListView layoutX="40.0" layoutY="79.0" prefHeight="430.0" prefWidth="323.0" />
@@ -17,17 +21,33 @@
                   <Button fx:id="Button1" contentDisplay="GRAPHIC_ONLY" layoutX="26.0" layoutY="31.0" maxHeight="65.0" maxWidth="100.0" minHeight="65.0" minWidth="100.0" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="65.0" prefWidth="100.0" text="Beef Burger" />
                   <Button fx:id="Button2" contentDisplay="GRAPHIC_ONLY" layoutX="26.0" layoutY="127.0" maxHeight="65.0" maxWidth="100.0" minHeight="65.0" minWidth="100.0" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="65.0" prefWidth="100.0" text="Chicken Burger" />
                   <Button fx:id="Button3" contentDisplay="GRAPHIC_ONLY" layoutX="26.0" layoutY="233.0" maxHeight="65.0" maxWidth="100.0" minHeight="65.0" minWidth="100.0" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="65.0" prefWidth="100.0" text="Veggie Burger" />
-                  <Button fx:id="Button4" contentDisplay="GRAPHIC_ONLY" layoutX="336.0" layoutY="31.0" maxHeight="65.0" maxWidth="100.0" minHeight="65.0" minWidth="100.0" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="65.0" prefWidth="100.0" text="Coke" />
-                  <Button fx:id="Button5" contentDisplay="GRAPHIC_ONLY" layoutX="180.0" layoutY="31.0" maxHeight="65.0" maxWidth="100.0" minHeight="65.0" minWidth="100.0" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="65.0" prefWidth="100.0" text="Cheese Burger" />
-                  <Button fx:id="Button6" contentDisplay="GRAPHIC_ONLY" layoutX="181.0" layoutY="128.0" maxHeight="65.0" maxWidth="100.0" minHeight="65.0" minWidth="100.0" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="65.0" prefWidth="100.0" text="Super Burger" />
-                  <Button fx:id="Button7" contentDisplay="GRAPHIC_ONLY" layoutX="183.0" layoutY="234.0" maxHeight="65.0" maxWidth="100.0" minHeight="65.0" minWidth="100.0" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="65.0" prefWidth="100.0" text="Fries" />
+                  <Button fx:id="Button4" contentDisplay="GRAPHIC_ONLY" layoutX="183.0" layoutY="31.0" maxHeight="65.0" maxWidth="100.0" minHeight="65.0" minWidth="100.0" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="65.0" prefWidth="100.0" text="Coke" />
+                  <Button fx:id="Button5" contentDisplay="GRAPHIC_ONLY" layoutX="183.0" layoutY="130.0" maxHeight="65.0" maxWidth="100.0" minHeight="65.0" minWidth="100.0" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="65.0" prefWidth="100.0" text="Cheese Burger" />
+                  <Button fx:id="Button7" contentDisplay="GRAPHIC_ONLY" layoutX="336.0" layoutY="31.0" maxHeight="65.0" maxWidth="100.0" minHeight="65.0" minWidth="100.0" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="65.0" prefWidth="100.0" text="Fries" />
                   <Button fx:id="Button8" contentDisplay="GRAPHIC_ONLY" layoutX="336.0" layoutY="130.0" maxHeight="65.0" maxWidth="100.0" minHeight="65.0" minWidth="100.0" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="65.0" prefWidth="100.0" text="Coke Zero" />
                   <Button fx:id="Button9" contentDisplay="GRAPHIC_ONLY" layoutX="336.0" layoutY="234.0" maxHeight="65.0" maxWidth="100.0" minHeight="65.0" minWidth="100.0" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="65.0" prefWidth="100.0" text="Sprite" />
+                  <Button fx:id="Button6" contentDisplay="GRAPHIC_ONLY" layoutX="183.0" layoutY="234.0" maxHeight="65.0" maxWidth="100.0" minHeight="65.0" minWidth="100.0" mnemonicParsing="false" onAction="#buttonPressed" prefHeight="65.0" prefWidth="100.0" text="Super Burger" />
                </children>
             </AnchorPane>
          </content>
       </ScrollPane>
-      <Button fx:id="resetButton" layoutX="530.0" layoutY="532.0" mnemonicParsing="false" text="Reset" />
+      <Button fx:id="resetButton" layoutX="530.0" layoutY="532.0" mnemonicParsing="false" onAction="#clickReset" text="Reset" />
       <Button fx:id="extraButton" layoutX="634.0" layoutY="532.0" mnemonicParsing="false" text="Print Receipt" />
+      <ListView fx:id="listOfPrices" layoutX="273.0" layoutY="79.0" prefHeight="430.0" prefWidth="90.0" />
+      <ListView fx:id="listOfOrders" layoutX="40.0" layoutY="79.0" prefHeight="430.0" prefWidth="234.0" />
+      <TextField fx:id="textfieldCustomerName" layoutX="48.0" layoutY="18.0" />
+      <Button layoutX="206.0" layoutY="18.0" mnemonicParsing="false" onAction="#clickEnterCustomerName" text="Enter" />
+      <Label layoutX="24.0" layoutY="527.0" text="Total:" textFill="WHITE">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <Label fx:id="totalPrice" layoutX="311.0" layoutY="528.0" textFill="WHITE">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <Button layoutX="665.0" layoutY="18.0" mnemonicParsing="false" onAction="#clickSortByPrice" text="Sort by price" />
+      <Button layoutX="778.0" layoutY="18.0" mnemonicParsing="false" onAction="#clickSortByOrderName" text="Sort by name" />
    </children>
 </Pane>
