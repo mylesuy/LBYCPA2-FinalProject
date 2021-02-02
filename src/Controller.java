@@ -1,12 +1,10 @@
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TextInputDialog;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -33,6 +31,8 @@ public class Controller {
     ObservableList<Integer> priceList;
     public Label totalPrice;
     InsertionSort insertionSort = new InsertionSort();
+    //new
+
 
     @FXML
     private void initialize(){
@@ -45,9 +45,11 @@ public class Controller {
         changeImage(Button7, Button7.getText());
         changeImage(Button8, Button8.getText());
         changeImage(Button9, Button9.getText());
+        //checkoutCart.setText("Checkout");
     }
     @FXML
     public void clickSortByPrice(){
+
         sortByPrice();
     }
     @FXML
@@ -202,13 +204,16 @@ public class Controller {
             //input cart method here
             int index = checkCustomerInList(textfieldCustomerName);
             for(int i=0;i<Integer.parseInt(qty.get());i++){
-                addOrder(index,customersOrderArrayList,button,50);
+                addOrder(index,customersOrderArrayList,button,50);      //change price to correct one
             }
             orderList = FXCollections.observableArrayList(customersOrder.getAllOrders(customersOrderArrayList.get(index).getCustomerName()));
             listOfOrders.setItems(orderList);
             priceList = FXCollections.observableArrayList(customersOrder.getAllPrices(customersOrderArrayList.get(index).getCustomerName()));
             listOfPrices.setItems(priceList);
             totalPrice.setText(String.valueOf(getTotalPrice(priceList)));
+            //columnName1.setCellValueFactory(new PropertyValueFactory<Graph, String>("customerName"));
+
+
         }
     }
 
@@ -277,6 +282,12 @@ public class Controller {
 
 
     }
+    @FXML
+    public void clickPrintReceipt(){
+        int index = checkCustomerInList(textfieldCustomerName);
+        pdfMaker_v2 receipt = new pdfMaker_v2();
 
+        receipt.write(customersOrder,customersOrderArrayList.get(index).getCustomerName());
+    }
 
 }

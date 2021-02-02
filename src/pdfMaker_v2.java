@@ -23,7 +23,9 @@ public class pdfMaker_v2 {
             PdfWriter.getInstance(document, file);
 
             // Set Font
-            FontFactory.register(FONT_PATH, "CONSOLA");
+
+            /*
+            FontFactory.register(FONT_PATH, "CONSOLA");*/
             Font font0 = FontFactory.getFont("CONSOLA",14);
             Font font1 = FontFactory.getFont(FontFactory.HELVETICA, 16, BaseColor.BLACK);
 
