@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.pdf.PdfPTable;
 
 public class pdfMaker_v2 {
     public static final String FONT_PATH = "assets/Font/consola.ttf";
@@ -14,7 +15,7 @@ public class pdfMaker_v2 {
     public void write(Graph graph,String src) {
         OutputStream file = null;
         try {
-            file = new FileOutputStream(new File("Receipt v2.pdf"));
+            file = new FileOutputStream(new File("Receipt.pdf"));
 
             // Create a new Document object
             Document document = new Document();
@@ -59,11 +60,17 @@ public class pdfMaker_v2 {
             document.add(new Paragraph(" "));
             document.add(new Paragraph("OFFICIAL RECEIPT"));
 
-            // loop through every string in the list
+            //Display ordered items and prices
+
+            PdfPTable t = new PdfPTable(2);
+            t.getDefaultCell().setBorder(0);
+            document.add(new Paragraph(" "));
             for (String element : graph.getAllOrders(src)) {
-                //System.out.println(element);
-                document.add(new Paragraph(element+"                           "+graph.getPrice(),font1));
+                t.addCell(element);
+                t.addCell(Integer.toString(graph.getPrice()));
             }
+            document.add(t);
+
             // Add meta data information to PDF file
             document.addCreationDate();
             document.addAuthor("Hamburger Time POS");
@@ -79,23 +86,19 @@ public class pdfMaker_v2 {
             e.printStackTrace();
 
         } finally {
-
             // closing FileOutputStream
             try {
                 if (file != null) {
                     file.close();
                 }
-            } catch (IOException io) {
-
-            }
+            } catch (IOException ignored) { }
         }
-    }
-    public static void main(String[] args) {
-        //write();
     }
 }
 
 //PDF Maker codes: //https://www.javacodegeeks.com/2020/11/how-to-create-pdf-file-in-java-itext-example.html
+//PDF Table codes: https://kb.itextpdf.com/home/it5kb/examples/101-a-very-simple-table
+//Table border: https://stackoverflow.com/questions/4900514/an-invisible-border-of-pdfptable
 //Get time: https://stackabuse.com/how-to-get-current-date-and-time-in-java/
 //Consola Font: https://www.download-free-fonts.com/details/95277/consolas
 //Change Font: https://kb.itextpdf.com/home/it5kb/examples/using-fonts
